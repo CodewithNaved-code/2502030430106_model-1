@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form</title>
+    <style>
+        body { font-family: Arial, sans-serif; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); margin: 0; padding: 20px; display: flex; justify-content: center; align-items: center; min-height: 100vh; }
+        form { background: white; padding: 40px; border-radius: 20px; box-shadow: 0 15px 35px rgba(0,0,0,0.3); width: 90%; max-width: 400px; }
+        h2 { text-align: center; color: #333; margin-bottom: 20px; }
+        img { display: block; margin: 0 auto 20px; border-radius: 10px; }
+        marquee { color: #667eea; font-weight: bold; margin-bottom: 20px; }
+        audio, video { width: 100%; max-width: 300px; margin: 10px 0; border-radius: 10px; }
+        label { display: block; margin: 10px 0 5px; color: #555; font-weight: bold; }
+        input[type="text"], input[type="email"], input[type="password"], input[type="tel"], textarea, select { width: 100%; padding: 12px; border: 2px solid #ddd; border-radius: 10px; box-sizing: border-box; transition: all 0.3s ease; }
+        input:focus, textarea:focus, select:focus { border-color: #667eea; box-shadow: 0 0 10px rgba(102,126,234,0.3); outline: none; transform: scale(1.02); }
+        input[type="radio"], input[type="checkbox"] { width: auto; margin-right: 8px; }
+        input[type="submit"] { background: linear-gradient(45deg, #667eea, #764ba2); color: white; border: none; padding: 15px; border-radius: 10px; cursor: pointer; font-size: 16px; width: 100%; transition: transform 0.3s; margin-bottom: 20px; }
+        input[type="submit"]:hover { transform: translateY(-2px); box-shadow: 0 10px 20px rgba(102,126,234,0.4); }
+        .radio-group, .checkbox-group { display: flex; flex-direction: column; gap: 5px; }
+        .link { text-align: center; margin-top: 20px; }
+        a { color: #667eea; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        .media { margin-top: 20px; padding-top: 20px; border-top: 1px solid #eee; text-align: center; }
+    </style>
+</head>
+<body>
+    <form action="#" method="post">
+        <img src="https://pplx-res.cloudinary.com/image/upload/pplx_search_images/25e596df85fd95a637eeb700a9ba7e9708f8f4e9.jpg" alt="Registration Icon" width="80" height="80">
+        
+        <marquee>🎵 welcome to Registration Portal! 🎵</marquee>
+        
+        <h2>Registration Form</h2>
+        
+        <label>Name:</label>
+        <input type="text" name="name" required>
+        
+        <label>Email:</label>
+        <input type="email" name="email" required>
+        
+        <label>Password:</label>
+        <input type="password" name="password" required>
+        
+        <label>Contact No:</label>
+        <input type="tel" name="contact" required>
+        
+        <label>Address:</label>
+        <textarea name="address" rows="4" required></textarea>
+        
+        <label>State:</label>
+        <select name="state" required>
+            <option value="">Select State</option>
+            <option value="Gujarat">Gujarat</option>
+            <option value="Maharashtra">Maharashtra</option>
+            <option value="Delhi">Delhi</option>
+            <option value="Other">Other</option>
+        </select>
+        
+        <label>Gender:</label>
+        <div class="radio-group">
+            <label><input type="radio" name="gender" value="Male" required> Male</label>
+            <label><input type="radio" name="gender" value="Female" required> Female</label>
+            <label><input type="radio" name="gender" value="Other" required> Other</label>
+        </div>
+        
+        <label>Hobbies:</label>
+        <div class="checkbox-group">
+            <label><input type="checkbox" name="hobbies[]" value="Reading"> Reading</label>
+            <label><input type="checkbox" name="hobbies[]" value="Gaming"> Gaming</label>
+            <label><input type="checkbox" name="hobbies[]" value="Sports"> Sports</label>
+        </div>
+        
+        <input type="submit" value="Submit">
+        
+        <div class="link">
+            <a href="https://www.yourcollege.edu/terms" target="_blank">Terms & Conditions</a> | 
+            <a href="https://fahhh.me/blog/faaah-sound" target="_blank">Soundboard</a>
+        </div>
+        
+        <!-- Media at Bottom: FAAAH Audio + Paper Flying Video -->
+        <div class="media">
+            <audio controls>
+                <source src="https://www.myinstants.com/media/sounds/faaah.mp3" type="audio/mpeg">
+            </audio>
+            <video width="300" height="150" controls>
+                <source src="https://youtu.be/_Bm0kGIAgWY" type="video/mp4">
+                Your browser doesn't support video.
+            </video>
+            <p>🛩️ Paper Flying Video</p>
+        </div>
+    </form>
+</body>
+</html>
