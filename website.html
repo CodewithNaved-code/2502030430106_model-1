@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>WikiSphere</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:'Inter',sans-serif;
+    background:#f8f9fa;
+    color:#202122;
+}
+
+/* HEADER */
+
+header{
+    background:white;
+    border-bottom:1px solid #dadde1;
+    padding:12px 25px;
+    position:sticky;
+    top:0;
+    z-index:1000;
+}
+
+.topbar{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:20px;
+}
+
+.logo{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.logo-icon{
+    width:45px;
+    height:45px;
+    border-radius:50%;
+    background:linear-gradient(135deg,#3366cc,#5b8cff);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:white;
+    font-size:22px;
+    font-weight:bold;
+}
+
+.logo h1{
+    font-size:28px;
+    color:#000;
+}
+
+.search-bar{
+    flex:1;
+    max-width:700px;
+    display:flex;
+}
+
+.search-bar input{
+    flex:1;
+    padding:12px 16px;
+    border:1px solid #a2a9b1;
+    border-right:none;
+    border-radius:6px 0 0 6px;
+    font-size:15px;
+}
+
+.search-bar button{
+    padding:12px 20px;
+    border:none;
+    background:#3366cc;
+    color:white;
+    font-weight:600;
+    cursor:pointer;
+    border-radius:0 6px 6px 0;
+}
+
+.search-bar button:hover{
+    background:#2a4b9b;
+}
+
+.user-actions{
+    display:flex;
+    gap:15px;
+}
+
+.user-actions button{
+    padding:10px 14px;
+    border:none;
+    background:#eef2ff;
+    border-radius:6px;
+    cursor:pointer;
+    font-weight:600;
+}
+
+/* LAYOUT */
+
+.container{
+    display:grid;
+    grid-template-columns:260px 1fr 300px;
+    gap:25px;
+    padding:25px;
+}
+
+/* SIDEBAR */
+
+.sidebar{
+    background:white;
+    border-radius:10px;
+    padding:20px;
+    height:max-content;
+    box-shadow:0 2px 10px rgba(0,0,0,0.05);
+}
+
+.sidebar h3{
+    margin-bottom:15px;
+    font-size:18px;
+}
+
+.sidebar ul{
+    list-style:none;
+}
+
+.sidebar li{
+    padding:10px 0;
+    border-bottom:1px solid #f0f0f0;
+    cursor:pointer;
+    transition:0.2s;
+}
+
+.sidebar li:hover{
+    color:#3366cc;
+    transform:translateX(5px);
+}
+
+/* MAIN CONTENT */
+
+.main-content{
+    background:white;
+    border-radius:10px;
+    padding:35px;
+    box-shadow:0 2px 10px rgba(0,0,0,0.05);
+}
+
+.article-title{
+    font-size:42px;
+    margin-bottom:10px;
+}
+
+.article-meta{
+    color:#666;
+    margin-bottom:30px;
+}
+
+.hero-image{
+    width:100%;
+    height:380px;
+    border-radius:12px;
+    overflow:hidden;
+    margin-bottom:30px;
+}
+
+.hero-image img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+.article-content h2{
+    margin:30px 0 15px;
+    color:#111;
+}
+
+.article-content p{
+    margin-bottom:18px;
+    line-height:1.8;
+    font-size:16px;
+}
+
+.highlight{
+    background:#eef4ff;
+    padding:18px;
+    border-left:5px solid #3366cc;
+    border-radius:8px;
+    margin:25px 0;
+}
+
+/* INFO PANEL */
+
+.info-panel{
+    background:white;
+    border-radius:10px;
+    padding:20px;
+    height:max-content;
+    box-shadow:0 2px 10px rgba(0,0,0,0.05);
+}
+
+.info-panel h3{
+    margin-bottom:20px;
+}
+
+.stats{
+    display:grid;
+    gap:15px;
+}
+
+.stat-card{
+    background:#f8f9ff;
+    padding:18px;
+    border-radius:8px;
+}
+
+.stat-card h4{
+    color:#3366cc;
+    margin-bottom:8px;
+}
+
+/* FOOTER */
+
+footer{
+    margin-top:40px;
+    background:#202122;
+    color:#fff;
+    padding:40px 20px;
+}
+
+.footer-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+    gap:30px;
+}
+
+.footer-grid h4{
+    margin-bottom:15px;
+}
+
+.footer-grid ul{
+    list-style:none;
+}
+
+.footer-grid li{
+    margin-bottom:10px;
+    color:#ccc;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:1100px){
+    .container{
+        grid-template-columns:1fr;
+    }
+
+    .sidebar,
+    .info-panel{
+        order:2;
+    }
+
+    .main-content{
+        order:1;
+    }
+}
+
+@media(max-width:768px){
+
+    .topbar{
+        flex-direction:column;
+        align-items:stretch;
+    }
+
+    .article-title{
+        font-size:32px;
+    }
+
+    .container{
+        padding:15px;
+    }
+
+    .main-content{
+        padding:25px;
+    }
+}
+</style>
+</head>
+<body>
+
+<header>
+    <div class="topbar">
+
+        <div class="logo">
+            <div class="logo-icon">W</div>
+            <h1>WikiSphere</h1>
+        </div>
+
+        <div class="search-bar">
+            <input type="text" placeholder="Search articles, science, history...">
+            <button>Search</button>
+        </div>
+
+        <div class="user-actions">
+            <button>Login</button>
+            <button>Donate</button>
+        </div>
+
+    </div>
+</header>
+
+<div class="container">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+        <h3>Categories</h3>
+        <ul>
+            <li>🌍 World History</li>
+            <li>🚀 Space Science</li>
+            <li>💻 Technology</li>
+            <li>🧠 Artificial Intelligence</li>
+            <li>🎨 Art & Culture</li>
+            <li>📚 Literature</li>
+            <li>⚛ Physics</li>
+            <li>🧬 Biology</li>
+        </ul>
+    </aside>
+
+    <!-- MAIN -->
+    <main class="main-content">
+
+        <h1 class="article-title">Artificial Intelligence</h1>
+
+        <div class="article-meta">
+            Last edited • 2 hours ago • 14 min read
+        </div>
+
+        <div class="hero-image">
+            <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?q=80&w=1400&auto=format&fit=crop" alt="">
+        </div>
+
+        <div class="article-content">
+
+            <p>
+                Artificial Intelligence (AI) refers to computer systems capable
+                of performing tasks that typically require human intelligence.
+                These tasks include learning, reasoning, problem-solving,
+                perception, and language understanding.
+            </p>
+
+            <div class="highlight">
+                AI is one of the fastest-growing technologies in the world and
+                is transforming industries including healthcare, finance,
+                robotics, and education.
+            </div>
+
+            <h2>History</h2>
+
+            <p>
+                The foundations of AI began in the mid-20th century with early
+                computing pioneers exploring machine reasoning and symbolic logic.
+                Over time, AI evolved from rule-based systems to deep learning
+                neural networks capable of complex decision making.
+            </p>
+
+            <h2>Modern Applications</h2>
+
+            <p>
+                Modern AI systems are used in recommendation engines,
+                autonomous vehicles, virtual assistants, medical diagnostics,
+                cybersecurity, and large language models.
+            </p>
+
+            <h2>Future of AI</h2>
+
+            <p>
+                Experts believe AI will continue to influence nearly every
+                aspect of society. Ethical concerns, regulation, transparency,
+                and safety remain major discussion topics worldwide.
+            </p>
+
+        </div>
+
+    </main>
+
+    <!-- RIGHT PANEL -->
+    <aside class="info-panel">
+
+        <h3>Quick Facts</h3>
+
+        <div class="stats">
+
+            <div class="stat-card">
+                <h4>Founded</h4>
+                <p>1956 (AI field)</p>
+            </div>
+
+            <div class="stat-card">
+                <h4>Main Areas</h4>
+                <p>ML, NLP, Robotics</p>
+            </div>
+
+            <div class="stat-card">
+                <h4>Popular Languages</h4>
+                <p>Python, C++, Java</p>
+            </div>
+
+            <div class="stat-card">
+                <h4>Industries</h4>
+                <p>Healthcare, Finance, Education</p>
+            </div>
+
+        </div>
+
+    </aside>
+
+</div>
+
+<footer>
+
+    <div class="footer-grid">
+
+        <div>
+            <h4>WikiSphere</h4>
+            <ul>
+                <li>About</li>
+                <li>Mission</li>
+                <li>Community</li>
+            </ul>
+        </div>
+
+        <div>
+            <h4>Resources</h4>
+            <ul>
+                <li>Developers</li>
+                <li>API</li>
+                <li>Documentation</li>
+            </ul>
+        </div>
+
+        <div>
+            <h4>Legal</h4>
+            <ul>
+                <li>Privacy Policy</li>
+                <li>Terms of Use</li>
+                <li>Cookies</li>
+            </ul>
+        </div>
+
+    </div>
+
+</footer>
+
+</body>
+</html>
