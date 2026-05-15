@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Registration Form</title>
+    <style>
+        :root {
+            --primary-color: #4a90e2;
+            --error-color: #e74c3c;
+            --success-color: #2ecc71;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f7f6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        .form-card {
+            background: #fff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 450px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 25px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+            position: relative;
+        }
+
+        label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 5px;
+            color: #555;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 6px;
+            box-sizing: border-box;
+            transition: border-color 0.3s ease;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+
+        .error-text {
+            color: var(--error-color);
+            font-size: 0.85rem;
+            margin-top: 5px;
+            height: 18px; /* Prevents layout jump */
+        }
+
+        button {
+            width: 100%;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 14px;
+            border: none;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: background 0.3s;
+        }
+
+        button:hover {
+            background-color: #357abd;
+        }
+
+        input[type="file"] {
+            padding: 8px;
+            background: #f9f9f9;
+        }
+    </style>
+</head>
+<body>
+
+<div class="form-card">
+    <h2>Registration</h2>
+    <form id="regForm" novalidate>
+        
+        <!-- Name -->
+        <div class="form-group">
+            <label for="fullName">Full Name</label>
+            <input type="text" id="fullName" placeholder="John Doe">
+            <div id="nameError" class="error-text"></div>
+        </div>
+
+        <!-- Enrollment Number -->
+        <div class="form-group">
+            <label for="enrollNo">Enrollment Number</label>
+            <input type="text" id="enrollNo" placeholder="EN-2026-001">
+            <div id="enrollError" class="error-text"></div>
+        </div>
+
+        <!-- Email -->
+        <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" placeholder="john@example.com">
+            <div id="emailError" class="error-text"></div>
+        </div>
+
+        <!-- Phone Number -->
+        <div class="form-group">
+            <label for="phone">Phone Number</label>
+            <input type="tel" id="phone" placeholder="10-digit mobile number">
+            <div id="phoneError" class="error-text"></div>
+        </div>
+
+        <!-- PDF Upload -->
+        <div class="form-group">
+            <label for="pdfFile">Upload Document (PDF only)</label>
+            <input type="file" id="pdfFile" accept="application/pdf">
+            <div id="pdfError" class="error-text"></div>
+        </div>
+
+        <button type="submit">Register Now</button>
+    </form>
+</div>
+
+<script>
+    document.getElementById('regForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        // 1. Get Values
+        const name = document.getElementById('fullName').value.trim();
+        const enroll = document.getElementById('enrollNo').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const phone = document.getElementById('phone').value.trim();
+        const pdfInput = document.getElementById('pdfFile');
+        const pdfFile = pdfInput.files[0];
+
+        // 2. Error Message Containers
+        const nameErr = document.getElementById('nameError');
+        const enrollErr = document.getElementById('enrollError');
+        const emailErr = document.getElementById('emailError');
+        const phoneErr = document.getElementById('phoneError');
+        const pdfErr = document.getElementById('pdfError');
+
+        // Clear previous errors
+        [nameErr, enrollErr, emailErr, phoneErr, pdfErr].forEach(el => el.textContent = "");
+
+        let isValid = true;
+
+        // 3. Validation Logic
+        
+        // Name Validation
+        if (name.length < 3) {
+            nameErr.textContent = "Please enter a valid name (min 3 chars).";
+            isValid = false;
+        }
+
+        // Enrollment Validation
+        if (enroll === "") {
+            enrollErr.textContent = "Enrollment number cannot be empty.";
+            isValid = false;
+        }
+
+        // Email Validation
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+            emailErr.textContent = "Enter a valid email address.";
+            isValid = false;
+        }
+
+        // Phone Validation (Simple 10-digit check)
+        const phoneRegex = /^[0-9]{10}$/;
+        if (!phoneRegex.test(phone)) {
+            phoneErr.textContent = "Enter a valid 10-digit phone number.";
+            isValid = false;
+        }
+
+        // PDF Validation
+        if (!pdfFile) {
+            pdfErr.textContent = "Please upload your PDF document.";
+            isValid = false;
+        } else {
+            if (pdfFile.type !== "application/pdf") {
+                pdfErr.textContent = "Only PDF files are allowed.";
+                isValid = false;
+            }
+            if (pdfFile.size > 5 * 1024 * 1024) { // 5MB limit
+                pdfErr.textContent = "File size must be less than 5MB.";
+                isValid = false;
+            }
+        }
+
+        // 4. Final Submission
+        if (isValid) {
+            alert("Form submitted successfully!");
+            console.log({
+                Name: name,
+                Enrollment: enroll,
+                Email: email,
+                Phone: phone,
+                FileName: pdfFile.name
+            });
+            // this.submit(); // Uncomment to actually send to server
+        }
+    });
+</script>
+
+</body>
+</html>

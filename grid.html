@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS Grid Layout</title>
+
+  <style>
+    *{
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body{
+      background: #f2f2f2;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .container{
+      width: 90%;
+      max-width: 1000px;
+
+      display: grid;
+
+      grid-template-columns: 1fr 2fr 2fr;
+      grid-template-rows: 80px 180px 180px 90px;
+
+      gap: 18px;
+    }
+
+    .box{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      color: white;
+      font-size: 32px;
+      font-weight: bold;
+
+      border: 5px solid #1e1e1e;
+      border-radius: 5px;
+
+      box-shadow: 0 4px 8px rgba(0,0,0,0.4);
+    }
+
+    .header{
+      grid-column: 1 / 4;
+      background: linear-gradient(to right, #6a4dd8, #8c79dc);
+    }
+
+    .sidebar{
+      grid-row: 2 / 4;
+      background: linear-gradient(to bottom, #63cbc5, #55aaa4);
+    }
+
+    .content1{
+      grid-column: 2 / 4;
+      background: linear-gradient(to right, #5b43e6, #45a7e8);
+    }
+
+    .content2{
+      background: linear-gradient(to right, #5b43e6, #45a7e8);
+    }
+
+    .content3{
+      background: linear-gradient(to right, #5b43e6, #45a7e8);
+    }
+
+    .footer{
+      grid-column: 1 / 4;
+      background: linear-gradient(to right, #6a4dd8, #8c79dc);
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+
+    <div class="box header">header</div>
+
+    <div class="box sidebar">HTML</div>
+
+    <div class="box content1">CSS</div>
+
+    <div class="box content2">JS</div>
+
+    <div class="box content3">JAVA</div>
+
+    <div class="box footer">footer</div>
+
+  </div>
+
+</body>
+</html>
